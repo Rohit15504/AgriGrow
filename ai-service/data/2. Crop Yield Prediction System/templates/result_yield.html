@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yield Prediction Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #007bff;
+        font-size: 2em;
+        margin: 20px 0;
+      }
+      p {
+        font-size: 1.1em;
+      }
+      .highlight {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+      a:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Prediction Result</h1>
+      <p>
+        For a <span class="highlight">{{ crop }}</span> crop in an area of
+        <span class="highlight">{{ area }}</span> hectares:
+      </p>
+
+      <p>Estimated Total Production:</p>
+      <h2>{{ prediction }} Tonnes</h2>
+
+      <p>Estimated Yield per Hectare:</p>
+      <h2>{{ yield_val }} Tonnes/Hectare</h2>
+
+      <a href="/">Make another prediction</a>
+    </div>
+  </body>
+</html>

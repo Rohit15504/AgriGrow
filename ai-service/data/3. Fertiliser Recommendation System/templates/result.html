@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prediction Result</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        margin: 40px;
+        background-color: #f7f9fc;
+        text-align: center;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #28a745;
+        font-size: 2.5em;
+        margin: 20px 0;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Recommended Fertilizer</h1>
+      <p>Based on your inputs, the best fertilizer to use is:</p>
+      <h2>{{ prediction }}</h2>
+      <a href="/">Make Another Recommendation</a>
+    </div>
+  </body>
+</html>

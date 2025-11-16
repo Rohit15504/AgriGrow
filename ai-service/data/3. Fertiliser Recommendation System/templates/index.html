@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fertilizer Recommendation</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        margin: 40px;
+        background-color: #f7f9fc;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box; /* Important for padding */
+      }
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      h1 {
+        text-align: center;
+        color: #0056b3;
+      }
+      .error {
+        color: #d9534f;
+        font-weight: bold;
+        text-align: center;
+        background-color: #f2dede;
+        padding: 10px;
+        border-radius: 8px;
+        grid-column: 1 / -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌱 Fertilizer Recommendation System</h1>
+
+      <form action="/predict" method="POST">
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- Numeric Inputs -->
+        <div>
+          <label for="Temperature">Temperature (°C):</label>
+          <input
+            type="number"
+            step="any"
+            id="Temperature"
+            name="Temperature"
+            placeholder="e.g., 26"
+            required
+          />
+        </div>
+        <div>
+          <label for="Humidity">Humidity (%):</label>
+          <input
+            type="number"
+            step="any"
+            id="Humidity"
+            name="Humidity"
+            placeholder="e.g., 52"
+            required
+          />
+        </div>
+        <div>
+          <label for="Moisture">Moisture (%):</label>
+          <input
+            type="number"
+            step="any"
+            id="Moisture"
+            name="Moisture"
+            placeholder="e.g., 38"
+            required
+          />
+        </div>
+        <div>
+          <label for="Nitrogen">Nitrogen (N) (kg/ha):</label>
+          <input
+            type="number"
+            step="any"
+            id="Nitrogen"
+            name="Nitrogen"
+            placeholder="e.g., 37"
+            required
+          />
+        </div>
+        <div>
+          <label for="Potassium">Potassium (K) (kg/ha):</label>
+          <input
+            type="number"
+            step="any"
+            id="Potassium"
+            name="Potassium"
+            placeholder="e.g., 0"
+            required
+          />
+        </div>
+        <div>
+          <label for="Phosphorous">Phosphorous (P) (kg/ha):</label>
+          <input
+            type="number"
+            step="any"
+            id="Phosphorous"
+            name="Phosphorous"
+            placeholder="e.g., 0"
+            required
+          />
+        </div>
+
+        <!-- Categorical Inputs (Dropdowns) -->
+        <div>
+          <label for="Soil Type">Soil Type:</label>
+          <select id="Soil Type" name="Soil Type" required>
+            <option value="">-- Select Soil Type --</option>
+            {% for soil in soil_types %}
+            <option value="{{ soil }}">{{ soil }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label for="Crop Type">Crop Type:</label>
+          <select id="Crop Type" name="Crop Type" required>
+            <option value="">-- Select Crop Type --</option>
+            {% for crop in crop_types %}
+            <option value="{{ crop }}">{{ crop }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="full-width">
+          <input type="submit" value="Recommend Fertilizer" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

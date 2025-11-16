@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crop Yield Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+      }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      div {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input[type="number"],
+      select {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        grid-column: 1 / -1; /* Span both columns */
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .error {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚜 Crop Yield Prediction</h1>
+    <form action="/predict_yield" method="POST">
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+
+      <div class="form-grid">
+        <div>
+          <label for="Crop_Year">Crop Year:</label>
+          <input
+            type="number"
+            id="Crop_Year"
+            name="Crop_Year"
+            placeholder="e.g., 2012"
+            required
+          />
+        </div>
+        <div>
+          <label for="Area">Area (in Hectares):</label>
+          <input
+            type="number"
+            step="any"
+            id="Area"
+            name="Area"
+            placeholder="e.g., 100"
+            required
+          />
+        </div>
+        <div>
+          <label for="Season">Season:</label>
+          <select id="Season" name="Season" required>
+            <option value="">-- Select Season --</option>
+            {% for s in seasons %}
+            <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label for="Crop">Crop:</label>
+          <select id="Crop" name="Crop" required>
+            <option value="">-- Select Crop --</option>
+            {% for c in crops %}
+            <option value="{{ c }}">{{ c | capitalize }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div>
+        <input type="submit" value="Predict Yield" />
+      </div>
+    </form>
+  </body>
+</html>

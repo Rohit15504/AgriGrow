@@ -1,0 +1,432 @@
+/* --- AgriGrow New Theme --- */
+
+/* 1. Light Mode Variables */
+:root,
+body.light-mode {
+  --primary-green: #2a9d8f;
+  --primary-green-dark: #218276;
+  --secondary-color: #264653;
+  --accent-color: #e9c46a;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
+  --text-light: #555;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+  --tag-ai-bg: #e6f7ff;
+  --tag-ai-text: #0056b3;
+  --tag-ml-bg: #eafaf1;
+  --tag-ml-text: #218276;
+  --tag-weather-bg: #fff8e1;
+  --tag-weather-text: #f39c12;
+}
+
+/* 2. Dark Mode Variables */
+body.dark-mode {
+  --primary-color: #2ecc71;
+  --primary-dark: #27ae60;
+  --secondary-color: #eafaf1;
+  /* Light text for dark bg */
+  --accent-color: #f39c12;
+  --bg-color: #12181b;
+  /* Very dark grey */
+  --card-bg: #1a2226;
+  /* Lighter dark */
+  --text-color: #ecf0f1;
+  --text-light: #bdc3c7;
+  --border-color: #34495e;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --tag-ai-bg: #264653;
+  --tag-ai-text: #2a9d8f;
+  --tag-ml-bg: #2c3e50;
+  --tag-ml-text: #2ecc71;
+  --tag-weather-bg: #533a1b;
+  --tag-weather-text: #e9c46a;
+}
+
+/* 3. Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* 4. Header */
+.header {
+  background-color: var(--card-bg);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--primary-color);
+  transition: background-color 0.3s;
+}
+
+.header-title {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.header-title span {
+  color: var(--primary-color);
+}
+
+/* 5. Dashboard Page */
+.dashboard {
+  text-align: center;
+}
+
+.dashboard-header {
+  margin: 2rem auto 3rem auto;
+  max-width: 800px;
+}
+
+.dashboard-header h1 {
+  color: var(--text-color);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  text-align: left;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Tag Colors */
+.tag-ai {
+  background-color: var(--tag-ai-bg);
+  color: var(--tag-ai-text);
+}
+
+.tag-ml {
+  background-color: var(--tag-ml-bg);
+  color: var(--tag-ml-text);
+}
+
+.tag-weather {
+  background-color: var(--tag-weather-bg);
+  color: var(--tag-weather-text);
+}
+
+/* 6. Form & Prediction Pages */
+.page-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  transition: background-color 0.3s;
+}
+
+.page-container h1 {
+  text-align: center;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+}
+
+.page-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.85rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+/* --- 7. BUTTON FIX (FOR ALL PAGES) --- */
+
+/* Theme Toggle Button */
+.theme-toggle {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+}
+
+/* Main Form Button */
+.form-button {
+  grid-column: 1 / -1;
+  padding: 1rem;
+  border: 2px solid var(--primary-green-dark);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--primary-green-dark);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: var(--primary-green-dark);
+  border-color: var(--primary-green-dark);
+  color: white;
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+/* Weather Search Button */
+.weather-search button {
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.weather-search button:hover {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+}
+
+/* 8. Result & Error Boxes */
+.result-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.result-box-success {
+  background-color: #eafaf1;
+  border: 1px solid #bfeecd;
+  color: #2c3e50;
+}
+
+.dark-mode .result-box-success {
+  background-color: #2c3e50;
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.result-box p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.result-box h2 {
+  color: var(--primary-dark);
+  font-size: 2rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.dark-mode .result-box h2 {
+  color: var(--primary-color);
+}
+
+.error-box {
+  grid-column: 1 / -1;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* 9. Weather Page */
+.weather-page {
+  text-align: center;
+}
+
+.weather-search {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.weather-search input {
+  padding: 0.85rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 300px;
+  transition: all 0.3s;
+}
+
+.weather-search input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+}
+
+.today-weather {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.today-weather h2 {
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+.today-weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.today-weather-details p {
+  margin: 0.5rem 0;
+}
+
+.today-weather-details p strong {
+  color: var(--primary-dark);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.forecast-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.25rem;
+}
+
+.forecast-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  border-bottom: 4px solid var(--accent-color);
+}
+
+.forecast-card h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+}
