@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react"; // Make sure to import useEffect
+import React, { useState, useEffect } from "react";
 import { getWeather } from "../api";
 import WeatherCard from "../components/WeatherCard";
 
 function Weather() {
-  // 1. State for the *active* search (what's being displayed)
   const [place, setPlace] = useState("New Delhi");
-  // 2. State for what the user is *typing* in the box
+
   const [searchQuery, setSearchQuery] = useState("New Delhi");
 
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
 
-  // This function will be called to fetch data
   const fetchWeatherForPlace = async (location) => {
     setError(null);
-    setWeatherData(null); // Clear old data
+    setWeatherData(null);
     if (!location) {
       setError("Please enter a location.");
       return;
@@ -28,18 +26,15 @@ function Weather() {
     }
   };
 
-  // 3. Fetch data on initial component load
   useEffect(() => {
     fetchWeatherForPlace(place);
-  }, []); // The empty array [] means this runs only ONCE when the page loads
+  }, []);
 
-  // 4. This function is for the search button click
   const handleSearchClick = () => {
-    setPlace(searchQuery); // Set the "active" place
+    setPlace(searchQuery);
     fetchWeatherForPlace(searchQuery);
   };
 
-  // 5. Allow pressing Enter to search
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSearchClick();
@@ -47,7 +42,7 @@ function Weather() {
   };
 
   const today = weatherData?.currentWeather;
-  const forecast = weatherData?.values?.slice(1, 8); // Next 7 days
+  const forecast = weatherData?.values?.slice(1, 8);
 
   return (
     <div className="weather-page">
@@ -55,9 +50,9 @@ function Weather() {
       <div className="weather-search">
         <input
           type="text"
-          value={searchQuery} // Input box uses the temporary query state
+          value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyPress={handleKeyPress} // Add Enter key functionality
+          onKeyPress={handleKeyPress}
           placeholder="Enter city or zip code"
         />
         <button onClick={handleSearchClick}>Search</button>

@@ -1,8 +1,7 @@
 import axios from "axios";
 
-// Create an 'instance' of axios that points to our Node.js backend
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api", // Your Node.js server address
+  baseURL: "http://127.0.0.1:8000/api",
 });
 
 // --- API Functions ---

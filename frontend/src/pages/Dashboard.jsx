@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Import your images from the assets folder
-// Make sure this path is correct!
+
+
 import cropImage from "../assets/crop_recommend.jpg";
 import yieldImage from "../assets/yield.jpg";
 import fertilizerImage from "../assets/fertilizer.jpeg";

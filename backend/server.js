@@ -3,17 +3,15 @@ import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const PORT = 8000;
 
 // --- Middleware ---
-app.use(cors()); // Allow requests from your React frontend
-app.use(express.json()); // Allow server to read JSON from requests
+app.use(cors());
+app.use(express.json());
 
-// Define the base URL for your Python AI service
 const AI_API_URL = "http://127.0.0.1:5000";
 
 // --- API Routes ---
@@ -21,9 +19,8 @@ const AI_API_URL = "http://127.0.0.1:5000";
 // 1. Crop Recommendation Route
 app.post("/api/recommend-crop", async (req, res) => {
   try {
-    // Forward the request body directly to the Flask server
     const response = await axios.post(`${AI_API_URL}/predict_crop`, req.body);
-    // Send the response from Flask back to the React client
+
     res.json(response.data);
   } catch (error) {
     console.error("Error in /api/recommend-crop:", error.message);
@@ -59,7 +56,6 @@ app.post("/api/predict-yield", async (req, res) => {
 // 4. Weather API Route
 app.get("/api/weather", async (req, res) => {
   try {
-    // Get the 'place' from the query (e.g., /api/weather?place=Seoul)
     const { place } = req.query;
     if (!place) {
       return res.status(400).json({ error: "Location (place) is required" });
