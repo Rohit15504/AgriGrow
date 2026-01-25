@@ -2,7 +2,8 @@ import express from "express";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
-
+import multer from "multer";
+const upload = multer();
 dotenv.config();
 
 const app = express();
@@ -100,6 +101,52 @@ app.get("/api/dropdown-data", async (req, res) => {
   } catch (error) {
     console.error("Error fetching dropdown data:", error.message);
     res.status(500).json({ error: "Error fetching dropdown data" });
+  }
+});
+
+//5. Crop Disease Detection
+app.post("/api/predict-disease", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const formData = new FormData();
+    // Convert the buffer to a Blob for axios to send as multipart/form-data
+    const blob = new Blob([req.file.buffer], { type: req.file.mimetype });
+    formData.append("file", blob, req.file.originalname);
+
+    const response = await axios.post(
+      `${AI_API_URL}/predict_disease`,
+      formData
+    );
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error in disease prediction:", error.message);
+    res.status(500).json({ error: "Error detecting disease" });
+  }
+});
+
+//6. ChatBot - Gemini
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+app.post("/api/chat", async (req, res) => {
+  try {
+    const { message } = req.body;
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+    // We give the bot a "System Instruction" to act as an AgriGrow expert
+    const prompt = `You are AgriGrow AI, a professional agricultural assistant. 
+    Provide concise, helpful advice to farmers about crops, fertilizers, and plant health.
+    User asks: ${message}`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    res.json({ reply: response.text() });
+  } catch (error) {
+    console.error("Chat Error:", error);
+    res.status(500).json({ error: "Chatbot is currently offline." });
   }
 });
 

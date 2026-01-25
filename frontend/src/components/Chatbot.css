@@ -1,0 +1,209 @@
+/* Container for the floating UI */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Floating Launcher Button */
+.chat-launcher {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-green, #2ecc71);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-launcher:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-green-dark, #27ae60);
+}
+
+/* Chat Window Box */
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    /* Width and Height are now controlled by React style={{...}} */
+
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    /* Keeps content inside rounded corners */
+}
+
+/* NEW: Top-Left Resize Handle */
+.resize-handle-tl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    cursor: nw-resize;
+    /* Diagonal cursor */
+    z-index: 20;
+    /* Above the header content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Make a little corner effect */
+    border-top-left-radius: 12px;
+}
+
+.resize-handle-tl svg {
+    margin-top: 4px;
+    /* Adjust visual position */
+    margin-left: 4px;
+    opacity: 0.7;
+}
+
+.resize-handle-tl:hover svg {
+    opacity: 1;
+}
+
+
+/* Header */
+.chat-header {
+    background-color: var(--primary-green, #2ecc71);
+    color: white;
+    padding: 15px;
+    /* Add padding-left so text doesn't hit the resize icon */
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    /* Make header not selectable */
+}
+
+.header-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.header-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Messages Area */
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Message Bubbles */
+.message {
+    display: flex;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.bot {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Specific Styles for Markdown Content inside Bubbles */
+.message-bubble p {
+    margin: 0 0 8px 0;
+}
+
+.message-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+.message-bubble ul,
+.message-bubble ol {
+    margin: 5px 0 10px 20px;
+    padding: 0;
+}
+
+.message-bubble li {
+    margin-bottom: 4px;
+}
+
+.message-bubble strong {
+    font-weight: 600;
+}
+
+.message.user .message-bubble {
+    background-color: var(--primary-green, #2ecc71);
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.message.bot .message-bubble {
+    background-color: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 2px;
+}
+
+/* Typing Animation */
+.typing {
+    font-style: italic;
+    color: #888;
+}
+
+/* Input Area */
+.chat-input-area {
+    display: flex;
+    border-top: 1px solid #eee;
+    padding: 10px;
+    background: white;
+}
+
+.chat-input-area input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px;
+    outline: none;
+}
+
+.chat-input-area button {
+    background: none;
+    border: none;
+    color: var(--primary-green, #2ecc71);
+    font-size: 1.2rem;
+    margin-left: 10px;
+    cursor: pointer;
+}

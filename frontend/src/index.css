@@ -430,3 +430,23 @@ main {
   margin: 0 0 0.5rem 0;
   color: var(--text-color);
 }
+
+/* Customizing react-chat-widget to match AgriGrow */
+.rcw-launcher {
+  background-color: var(--primary-green) !important;
+}
+
+.rcw-header {
+  background-color: var(--primary-green-dark) !important;
+}
+
+.rcw-message-client .rcw-message-text {
+  background-color: var(--primary-green) !important;
+  color: white !important;
+}
+
+/* Ensure it's visible in dark mode */
+.rcw-widget-container {
+  color: #333;
+  /* Chat text should usually be dark for readability */
+}

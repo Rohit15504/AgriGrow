@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
 import cropImage from "../assets/crop_recommend.jpg";
 import yieldImage from "../assets/yield.jpg";
 import fertilizerImage from "../assets/fertilizer.jpeg";
 import weatherImage from "../assets/weather.jpeg";
+import diseaseImage from "../assets/disease.jpg";
 
 function Dashboard() {
   return (
@@ -68,6 +67,23 @@ function Dashboard() {
               maximize your crop's nutritional intake.
             </p>
             <span className="card-tag tag-ai">AI Powered</span>
+          </div>
+        </Link>
+
+        {/* Disease Prediction Card */}
+        <Link to="/disease-predict" className="card">
+          <img
+            src={diseaseImage}
+            alt="Disease Prediction"
+            className="card-image"
+          />
+          <div className="card-content">
+            <h2>Disease Detection</h2>
+            <p>
+              Upload leaf images to identify pests and diseases early before
+              they spread.
+            </p>
+            <span className="card-tag tag-ai">CNN Powered</span>
           </div>
         </Link>
 
