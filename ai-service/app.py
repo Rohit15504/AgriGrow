@@ -124,4 +124,5 @@ def predict_disease():
     return jsonify({'prediction_text': display_name})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # host='0.0.0.0' is required for the cloud environment
+    app.run(host='0.0.0.0', port=7860)
