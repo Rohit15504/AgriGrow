@@ -7,13 +7,15 @@ const upload = multer();
 dotenv.config();
 
 const app = express();
-const PORT = 8000;
+// UPDATED: Allow Render to inject its own port
+const PORT = process.env.PORT || 8000;
 
 // --- Middleware ---
 app.use(cors());
 app.use(express.json());
 
-const AI_API_URL = "http://127.0.0.1:5000";
+// Hugging Face API URL
+const AI_API_URL = "https://rohit7457-agrigrow-ai.hf.space";
 
 // --- API Routes ---
 
@@ -21,7 +23,6 @@ const AI_API_URL = "http://127.0.0.1:5000";
 app.post("/api/recommend-crop", async (req, res) => {
   try {
     const response = await axios.post(`${AI_API_URL}/predict_crop`, req.body);
-
     res.json(response.data);
   } catch (error) {
     console.error("Error in /api/recommend-crop:", error.message);
@@ -34,7 +35,7 @@ app.post("/api/recommend-fertilizer", async (req, res) => {
   try {
     const response = await axios.post(
       `${AI_API_URL}/predict_fertilizer`,
-      req.body
+      req.body,
     );
     res.json(response.data);
   } catch (error) {
@@ -73,7 +74,7 @@ app.get("/api/weather", async (req, res) => {
         shortColumnNames: 0,
       },
       headers: {
-        "X-RapidAPI-Key": process.env.WEATHER_API_KEY, // Get key from .env
+        "X-RapidAPI-Key": process.env.WEATHER_API_KEY, // Set this in Render!
         "X-RapidAPI-Host": "visual-crossing-weather.p.rapidapi.com",
       },
     };
@@ -118,7 +119,7 @@ app.post("/api/predict-disease", upload.single("file"), async (req, res) => {
 
     const response = await axios.post(
       `${AI_API_URL}/predict_disease`,
-      formData
+      formData,
     );
     res.json(response.data);
   } catch (error) {
@@ -130,6 +131,7 @@ app.post("/api/predict-disease", upload.single("file"), async (req, res) => {
 //6. ChatBot - Gemini
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+// Ensure this key is added in your Render Environment Variables!
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 app.post("/api/chat", async (req, res) => {
   try {
@@ -152,8 +154,6 @@ app.post("/api/chat", async (req, res) => {
 
 // --- Start the Server ---
 app.listen(PORT, () => {
-  console.log(
-    `[INFO] Node.js backend server running on http://127.0.0.1:${PORT}`
-  );
+  console.log(`[INFO] Node.js backend server running on port ${PORT}`);
   console.log(`[INFO] AI-Service API is expected at ${AI_API_URL}`);
 });
